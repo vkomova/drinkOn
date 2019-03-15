@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<main class="form-wrapper">
 <h1>Log In</h1>
 <form method="post" class="white-text" action="{% url 'login' %}">
     {% csrf_token %}
@@ -8,5 +9,6 @@
     <input type="submit" class="btn waves-effect waves-light deep-purple darken-2" value="login">
     <input type="hidden" name="next" value="{{ next }}">
 </form><br><br>
+</main>
 
 {% endblock %}

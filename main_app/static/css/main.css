@@ -73,3 +73,7 @@ footer div {
         font-size: 28px !important;
     }
 }
+
+.form-wrapper form {
+    /* background-color: white !important; */
+}
