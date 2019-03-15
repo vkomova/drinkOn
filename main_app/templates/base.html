@@ -23,8 +23,13 @@
                         class="right">nkOn</span></a>
                 <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#!">Sign Up<i class="material-icons right">person_add</i></a></li>
-                    <li><a href="#!">Log In<i class="material-icons right">vpn_key</i></a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'signup' %}">Sign Up<i class="material-icons right">person_add</i></a></li>
+                    <li><a href="{% url 'login' %}">Log In<i class="material-icons right">vpn_key</i></a></li>
+                    {% endif %}
                 </ul>
                 <ul class="sidenav deep-purple lighten-1" id="mobile-menu">
                     <li><a href="#!" class="white-text">Sign Up<i
