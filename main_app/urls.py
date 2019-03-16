@@ -1,9 +1,10 @@
 from django.urls import path, include
-from . import views
+from .views import landing, nearbyhappyhours
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('about/', views.about, name="about"),
+    path('', landing.home, name='home'),
+    path('about/', landing.about, name='about'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup', views.signup, name='signup'),
+    path('accounts/signup', landing.signup, name='signup'),
+    path('nearby/', nearbyhappyhours.nearby, name='nearby'),
 ]
