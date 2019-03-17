@@ -1,11 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<h3>Nearby Restaurants</h3>
+
 <main>
-<p>Nearby Happy Hours</p>
-{% for result in print_results %}
-    <p>{{result}}</p>
-{% endfor %}
+    <table>
+        <div class="grid"></div>
+            <thead class="grid">
+                <tr>
+                    <th>Restaurant Name</th>
+                    <th>Restaurant Address</th>
+                </tr>
+            </thead>
+            <tbody class="grid">
+                <tr>
+                    {% for name in restaurant_name %}
+                        <td>{{name}}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for address in restaurant_address %}
+                        <td>{{address}}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </div>
+    </table>
 </main>
+
+<!-- Old code:
+<main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Restaurants</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in print_results %}
+                    <tr><td>{{result}}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</main> -->
 
 {% endblock %}

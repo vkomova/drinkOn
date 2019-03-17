@@ -60,6 +60,14 @@ footer div {
     padding: 50px;
 }
 
+/* this code is supposed to make the table display nicer, but its not!*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
 @media only screen and (min-width: 600px) {
     .about-wrapper {
         height: 82.5vh;

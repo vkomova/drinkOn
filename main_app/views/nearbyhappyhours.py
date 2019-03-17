@@ -18,11 +18,28 @@ def nearby(request):
     print(coordinates[0], coordinates[1])
     nearby_json = _get_nearby_places(coordinates[0], coordinates[1])
     print_results = _display_nearby_places(nearby_json)
+    restaurant_name = print_results[0]
+    restaurant_address = print_results[1]
     return render(request, 'nearby.html', {
         # '_display_nearby_places': _display_nearby_places,
         # 'nearby_json': nearby_json,
-        'print_results': print_results
+        'print_results': print_results,
+        'restaurant_name': restaurant_name,
+        'restaurant_address': restaurant_address,
     })
+
+# Old code
+# def nearby(request):
+#     coordinates = _get_location()
+#     print(coordinates[0], coordinates[1])
+#     nearby_json = _get_nearby_places(coordinates[0], coordinates[1])
+#     print_results = _display_nearby_places(nearby_json)
+#     print(print_results)
+#     return render(request, 'nearby.html', {
+#         # '_display_nearby_places': _display_nearby_places,
+#         # 'nearby_json': nearby_json,
+#         'print_results': print_results
+#     })
 
 def _get_location():
     f = urllib.request.urlopen('http://api.ipstack.com/check?access_key=' + IP_STACK_API)
@@ -43,7 +60,9 @@ def _get_nearby_places(location_latitude, location_longitude):
     )
 
 def _display_nearby_places(nearby_json):
-    results = []
+    resultsname = []
+    resultsaddress =[]
     for result in nearby_json['results']:
-        results.append(result['name'] + ' ' + result['vicinity'])
-    return results
+        resultsname.append(result['name']),
+        resultsaddress.append(result['vicinity'])
+    return resultsname, resultsaddress
