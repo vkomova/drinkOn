@@ -16,7 +16,7 @@
             {% for item in restaurant_list %}
             <tr>
                 <td>{{item.0}}</td>
-                <td>{{item.1}}</td>
+                <td><a href="https://www.google.com/maps/place/{{item.1}}">{{item.1}}</a></td>
             </tr>
             {% endfor %}
         </tbody>
