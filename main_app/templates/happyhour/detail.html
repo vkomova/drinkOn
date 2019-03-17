@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Happy Hour Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ happyhour.name }}</span>
+    <p>Address: {{ happyhour.address }}</p>
+    <p>Happy hour from {{ happyhour.time_start }} to {{ happyhour.time_end }}</p>
+    <p>Date added: {{ happyhour.added }}</p>
+  </div>
+</div>
+
+{% endblock %}
