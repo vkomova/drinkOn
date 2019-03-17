@@ -6,24 +6,20 @@
 <main>
     <table>
         <div class="grid"></div>
-            <thead>
-                <tr>
-                    <th>Restaurant Name</th>
-                    <th>Restaurant Address</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {% for name in restaurant_name %}
-                        <td>{{name}}</td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    {% for address in restaurant_address %}
-                        <td>{{address}}</td>
-                    {% endfor %}
-                </tr>
-            </tbody>
+        <thead>
+            <tr>
+                <th>Restaurant Name</th>
+                <th>Restaurant Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in restaurant_list %}
+            <tr>
+                <td>{{item.0}}</td>
+                <td>{{item.1}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
         </div>
     </table>
 </main>
