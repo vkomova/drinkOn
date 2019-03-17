@@ -7,13 +7,12 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from ..models import Happyhour
+import uuid
+import boto3
+from ..models import Happyhour, Photo
 
-# Create your views here.
-
-def happyhour_detail(request, happyhour_id):
-  happyhour = happyhour.objects.get(id=happyhour_id)
-  return render(request, 'happyhour/detail.html', { 'happyhour': happyhour })
+S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
+BUCKET = 'happyhourwdi'
 
 def signup(request):
   error_message = ''
