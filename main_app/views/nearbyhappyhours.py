@@ -17,9 +17,9 @@ GMAPS = googlemaps.Client(key='AIzaSyDAI6Sb4jrQMIOG_JqZvHhf4h9QUQQ9fOE')
 
 def nearby(request):
     coordinates = _get_location()
-    print(coordinates[0], coordinates[1])
-    nearby_json = _get_nearby_places(coordinates[0], coordinates[1])
-    print_results = _display_nearby_places(nearby_json)
+    # print(coordinates[0], coordinates[1])
+    # nearby_json = _get_nearby_places(coordinates[0], coordinates[1])
+    print_results = _display_nearby_places(_get_nearby_places(coordinates[0], coordinates[1]))
     # restaurant_name = print_results[0]
     # restaurant_address = print_results[1]
     restaurant_list = list(zip(print_results[0], print_results[1]))
