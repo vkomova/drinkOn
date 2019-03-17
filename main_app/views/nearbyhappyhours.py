@@ -22,9 +22,7 @@ def nearby(request):
     print_results = _display_nearby_places(_get_nearby_places(coordinates[0], coordinates[1]))
     # restaurant_name = print_results[0]
     # restaurant_address = print_results[1]
-    restaurant_list = list(zip(print_results[0], print_results[1]))
-    # for n in range(len(print_results[0])):
-    #     restaurant_list.extend([print_results[0][n], print_results[1][n]])
+    restaurant_list = list(zip(print_results[0], print_results[1], print_results[2]))
     return render(request, 'nearby.html', {
         # '_display_nearby_places': _display_nearby_places,
         # 'nearby_json': nearby_json,
@@ -68,7 +66,9 @@ def _get_nearby_places(location_latitude, location_longitude):
 def _display_nearby_places(nearby_json):
     resultsname = []
     resultsaddress =[]
+    resultsid = []
     for result in nearby_json['results']:
         resultsname.append(result['name']),
         resultsaddress.append(result['vicinity'])
-    return resultsname, resultsaddress
+        resultsid.append(result['place_id'])
+    return resultsname, resultsaddress, resultsid

@@ -10,6 +10,7 @@
             <tr>
                 <th>Restaurant Name</th>
                 <th>Restaurant Address</th>
+                <th>Restaurant Id</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
             <tr>
                 <td>{{item.0}}</td>
                 <td><a target="_blank" href="https://www.google.com/maps/place/{{item.1}}">{{item.1}}</a></td>
+                <td>{{item.2}}</td>
             </tr>
             {% endfor %}
         </tbody>
