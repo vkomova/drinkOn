@@ -130,3 +130,7 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/about/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+
+import environ
+environ.Env()

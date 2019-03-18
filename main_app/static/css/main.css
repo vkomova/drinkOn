@@ -81,6 +81,10 @@ footer div {
     border-right: 1px solid black;
 }
 
+.amazon-img {
+    image-orientation: from-image;
+}
+
 @media only screen and (min-width: 600px) {
     .about-wrapper {
         height: 82.5vh;

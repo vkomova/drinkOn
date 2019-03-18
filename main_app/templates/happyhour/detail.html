@@ -22,7 +22,7 @@
 
     <div>
       {% for photo in happyhour.photo_set.all %}
-        <img class="responsive-img card-panel" src="{{photo.url}}">
+        <img class="responsive-img card-panel amazon-img" style="image-orientation: from-image" src="{{photo.url}}">
       {% empty %}
         <div class="card-panel teal-text center-align">No Photos Uploaded</div>
       {% endfor %}
