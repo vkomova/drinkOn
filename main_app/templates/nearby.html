@@ -26,20 +26,27 @@
     </table>
 </main>
 
-<!-- Old code:
-<main>
         <table>
-            <thead>
-                <tr>
-                    <th>Restaurants</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for result in print_results %}
-                    <tr><td>{{result}}</td></tr>
-                {% endfor %}
-            </tbody>
+            <div class="grid">
+                <thead>
+                    <tr>
+                        <th>Restaurant Name</th>
+                        <th>Restaurant Address</th>
+                        <th>Restaurant ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in restaurant_list %}
+                        <tr>
+                            <td>{{item.0}}</td>
+                            <td><a target="_blank" href="https://www.google.com/maps/place/{{item.1}}">{{item.1}}</a></td>
+                            <td>{{item.2}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </div>
         </table>
-</main> -->
+    </div>
+</main>
 
 {% endblock %}

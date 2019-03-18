@@ -1,19 +1,12 @@
 from datetime import datetime
 from django.utils import timezone
-# from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from ..models import Happyhour
-
-# Create your views here.
-
-def happyhour_detail(request, happyhour_id):
-  happyhour = happyhour.objects.get(id=happyhour_id)
-  return render(request, 'happyhour/detail.html', { 'happyhour': happyhour })
+from ..models import Happyhour, Photo
 
 def signup(request):
   error_message = ''
@@ -30,8 +23,7 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def about(request):
-    return render(request, 'about.html')
-    # return HttpResponse('about page')
+  return render(request, 'about.html')
 
 def home(request):
-    return render(request, 'home.html')
+  return render(request, 'home.html')

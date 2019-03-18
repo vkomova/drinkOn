@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="center-h1">
+    <br><h3 style="text-align:center">Noteworthy (or not) Happy Hours</h3>
+</div>
+
+<main class="form-wrapper padding">
+    <div class ="border">
+        {% for happyhour in happyhourresults %}
+            <div class="card">
+                <div class="card-content">
+                    <a href="{% url 'detail' happyhour.id %}"><span class="card-title">{{ happyhour.name }}</span></a>
+                    <p>Address: {{ happyhour.address }}</p><br>
+                    <p>Happy hour from {{ happyhour.time_start }} to {{ happyhour.time_end }}</p>
+                    <p>Date added: {{ happyhour.added }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock %}
