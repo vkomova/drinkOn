@@ -34,14 +34,6 @@ def happyhour_detail(request, happyhour_id):
     'happyhour_form': happyhour_form
   })
 
-def nearby(request):
-  coordinates = _get_location()
-  print_results = _display_nearby_places(_get_nearby_places(coordinates[0], coordinates[1]))
-  restaurant_list = list(zip(print_results[0], print_results[1], print_results[2]))
-  return render(request, 'nearby.html', {
-    'restaurant_list': restaurant_list,
-  })
-
 class HappyhourCreate(CreateView):
   model = Happyhour
   fields = '__all__'
