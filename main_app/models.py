@@ -85,24 +85,29 @@ class Photo(models.Model):
 
 class Restaurant(models.Model):
     google_assigned_id = models.CharField(max_length=250)
+    name = models.CharField(max_length=250)
     address = models.CharField(max_length=250)
-    menu_photo_url = models.CharField(max_length=200)
-    hours = models.CharField(max_length=200)
 
-class MenuPending(models.Model):
+class Menu(models.Model):
     menu_photo_url = models.CharField(max_length=200)
+    approved = models.BooleanField
+    pending = models.BooleanField
+    created_at = models.DateTimeField
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
 class MenuVote(models.Model):
-    vote = models.BooleanField()
-    menu_pending = models.ForeignKey(MenuPending, on_delete=models.CASCADE)
+    vote = models.BooleanField
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
-class HoursPending(models.Model):
+class Hours(models.Model):
     hours = models.CharField(max_length=200)
+    approved = models.BooleanField
+    pending = models.BooleanField
+    created_at = models.DateTimeField
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
 class HoursVote(models.Model):
-    vote = models.BooleanField()
-    hours_pending = models.ForeignKey(HoursPending, on_delete=models.CASCADE)
+    vote = models.BooleanField
+    hours = models.ForeignKey(Hours, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
