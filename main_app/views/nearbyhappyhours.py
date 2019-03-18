@@ -6,11 +6,13 @@ from datetime import datetime
 # from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from ..forms import HappyhourForm
 import uuid
 import boto3
 from ..models import Happyhour, Photo
@@ -20,11 +22,16 @@ IP_STACK_API = '5c2404e5cc460bf450a44e309be04b8d'
 GMAPS = googlemaps.Client(key='AIzaSyDAI6Sb4jrQMIOG_JqZvHhf4h9QUQQ9fOE')
 
 def happyhour_index(request):
-    return render(request, 'happyhour/index.html', { 'happyhour': happyhour })
+  happyhourresults = Happyhour.objects.all()
+  return render(request, 'happyhour/index.html', { 'happyhourresults': happyhourresults })
 
 def happyhour_detail(request, happyhour_id):
   happyhour = Happyhour.objects.get(id=happyhour_id)
-  return render(request, 'happyhour/detail.html', { 'happyhour': happyhour })
+  happyhour_form = HappyhourForm()
+  return render(request, 'happyhour/detail.html', { 
+    'happyhour': happyhour,
+    'happyhour_form': happyhour_form
+    })
 
 class HappyhourCreate(CreateView):
   model = Happyhour
@@ -33,10 +40,11 @@ class HappyhourCreate(CreateView):
 
 class HappyhourUpdate(UpdateView):
   model = Happyhour
-  fields = '__all__'
+  fields = ['name', 'address', 'time_start', 'time_end', 'added']
+  success_url = '/happyhour/'
 
 # Not sure if we will need a delete form but included just in case
-class HappyhourDelete(DeleteView):
+class HappyhourDelete(LoginRequiredMixin, DeleteView):
   model = Happyhour
   success_url = '/happyhour/'
 
