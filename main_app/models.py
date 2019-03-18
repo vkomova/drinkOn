@@ -85,7 +85,7 @@ class Photo(models.Model):
         return f"Photo for happyhour_id: {self.happyhour_id} @{self.url}"
 
 class Restaurant(models.Model):
-    google_assigned_id = models.CharField(max_length=250)
+    google_place_id = models.CharField(max_length=250)
     name = models.CharField(max_length=250)
     address = models.CharField(max_length=250)
 
