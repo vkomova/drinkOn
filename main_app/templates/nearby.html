@@ -1,25 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h3 style="text-align: center">Nearby Restaurants</h3>
-<main class="form-wrapper padding">
-    <div class="border">
+<main class="container container-pad">
+    <div class="border border-pad">
+        <h3 class="h3-headroom" style="text-align: center">Nearby Restaurants</h3>
         <table>
             <div class="grid">
-                <thead>
-                    <tr>
-                        <th>Restaurant Name</th>
-                        <th>Restaurant Address</th>
-                        <th style="display:none">Restaurant ID</th>
-                    </tr>
-                </thead>
                 <tbody>
                     {% for item in restaurant_list %}
                     <form action="{% url 'restaurant_details' %}" method="POST">
                         {% csrf_token %}
                         <tr>
-                            <td>{{item.0}}</td>
-                            <td><a target="_blank" href="https://www.google.com/maps/place/{{item.1}}">{{item.1}}</a>
-                            </td>
+                            <td>{{item.0}}<br><a class="deep-purple-text" target="_blank"
+                                    href="https://www.google.com/maps/place/{{item.1}}">{{item.1}}</a></td>
                             <input type="hidden" name="name" value="{{item.0}}"></input>
                             <input type="hidden" name="address" value="{{item.1}}"></input>
                             <input type="hidden" name="google_place_id" value="{{item.2}}"></input>
