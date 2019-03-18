@@ -19,37 +19,37 @@
         <nav>
             <div class="nav-wrapper deep-purple darken-2">
                 <a href="{% url 'home' %}" class="brand-logo" style="margin-left: 15px; margin-right: 15px;"><span
-                        class="left">dr</span><i class="material-icons logo-header-icon">local_bar</i><span
-                        class="right">nkOn</span></a>
+                    class="left">dr</span><i class="material-icons logo-header-icon">local_bar</i><span
+                    class="right">nkOn</span></a>
                 <a href="#!" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'nearby' %}">Nearby Restaurants</a></li>
-                    <li><a href="{% url 'index' %}">View All Happy Hours</a></li>
-                    <li><a href="{% url 'happyhour_create' %}">Add a Happy Hour!</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                        <li><a href="{% url 'nearby' %}">Nearby Restaurants</a></li>
+                        <li><a href="{% url 'index' %}">View All Happy Hours</a></li>
+                        <li><a href="{% url 'happyhour_create' %}">Add a Happy Hour!</a></li>
+                        <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up<i class="material-icons right">person_add</i></a></li>
-                    <li><a href="{% url 'login' %}">Log In<i class="material-icons right">vpn_key</i></a></li>
+                        <li><a href="{% url 'signup' %}">Sign Up<i class="material-icons right">person_add</i></a></li>
+                        <li><a href="{% url 'login' %}">Log In<i class="material-icons right">vpn_key</i></a></li>
                     {% endif %}
                 </ul>
                 <ul class="sidenav deep-purple lighten-1" id="mobile-menu">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'nearby' %}">Nearby Restaurants</a></li>
-                    <li><a href="{% url 'index' %}">View All Happy Hours</a></li>
-                    <li><a href="{% url 'happyhour_create' %}">Add a Happy Hour!</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                        <li><a href="{% url 'nearby' %}">Nearby Restaurants</a></li>
+                        <li><a href="{% url 'index' %}">View All Happy Hours</a></li>
+                        <li><a href="{% url 'happyhour_create' %}">Add a Happy Hour!</a></li>
+                        <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
-                    <li><a href="{% url 'signup' %}" class="white-text">Sign Up<i
-                        class="material-icons right white-text">person_add</i></a></li>
-                    <li><a href="{% url 'login' %}" class="white-text">Log In<i class="material-icons right white-text">vpn_key</i></a>
-                    </li>
+                        <li><a href="{% url 'signup' %}" class="white-text">Sign Up<i
+                            class="material-icons right white-text">person_add</i></a></li>
+                        <li><a href="{% url 'login' %}" class="white-text">Log In<i class="material-icons right white-text">vpn_key</i></a></li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');

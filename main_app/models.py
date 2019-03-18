@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import date
-# from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -66,10 +65,7 @@ class Happyhour(models.Model):
         choices=TIME_CHOICES,
         default=TIME_CHOICES[38][0],
     )
-    # added = models.DateTimeField(default=timezone.now)
-    # added = models.DateField(input_formats=['YYYY-MM-DD'], default=date.today)
-    # added = models.DateTimeField(default=date.today, input_formats=['%Y-%m-%d'])
-    added = models.DateField('Date review was added/updated')
+    added = models.DateField('Date review added/updated')
 
     def __str__(self):
         return self.name
