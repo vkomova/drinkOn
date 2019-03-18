@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -90,24 +91,24 @@ class Restaurant(models.Model):
 
 class Menu(models.Model):
     menu_photo_url = models.CharField(max_length=200)
-    approved = models.BooleanField
-    pending = models.BooleanField
-    created_at = models.DateTimeField
+    approved = models.BooleanField(default=False)
+    pending = models.BooleanField(default=True)
+    created_at = models.DateTimeField(default=timezone.now)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
 class MenuVote(models.Model):
-    vote = models.BooleanField
+    vote = models.BooleanField(default=True)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
 class Hours(models.Model):
     hours = models.CharField(max_length=200)
-    approved = models.BooleanField
-    pending = models.BooleanField
-    created_at = models.DateTimeField
+    approved = models.BooleanField(default=False)
+    pending = models.BooleanField(default=True)
+    created_at = models.DateTimeField(default=timezone.now)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
 class HoursVote(models.Model):
-    vote = models.BooleanField
+    vote = models.BooleanField(default=True)
     hours = models.ForeignKey(Hours, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
