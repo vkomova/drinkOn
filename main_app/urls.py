@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import landing, nearbyhappyhours
+from .views import landing, nearbyhappyhours, restaurants
 
 urlpatterns = [
     path('', landing.home, name='home'),
@@ -13,4 +13,5 @@ urlpatterns = [
     path('happyhour/create/', nearbyhappyhours.HappyhourCreate.as_view(), name='happyhour_create'),
     path('happyhour/<int:pk>/update/', nearbyhappyhours.HappyhourUpdate.as_view(), name='happyhour_update'),
     path('happyhour/<int:pk>/delete/', nearbyhappyhours.HappyhourDelete.as_view(), name='happyhour_delete'),
+    path('restaurants/details', restaurants.check_restaurant, name='restaurant_details'),
 ]
