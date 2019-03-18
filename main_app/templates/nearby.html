@@ -5,6 +5,32 @@
     <div class="border">
 
         <table>
+<<<<<<< HEAD
+            <div class="grid">
+                <thead>
+                    <tr>
+                        <th>Restaurant Name</th>
+                        <th>Restaurant Address</th>
+                        <th style="display:none">Restaurant ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in restaurant_list %}
+                        <form action="">
+                            <tr>
+                                <td>{{item.0}}</td>
+                                <td><a target="_blank" href="https://www.google.com/maps/place/{{item.1}}">{{item.1}}</a></td>
+                                <input type="hidden" name="google_place_id" value="{{item.2}}"></input>
+                                <td>
+                                        <input type="submit" value="view" class="btn deep-purple"></input>
+                                </td>
+                            </tr>
+                        </form>
+                    {% endfor %}
+                </tbody>
+            </div>
+        </table>
+=======
             <div class="grid"></div>
             <thead>
                 <tr>
@@ -24,6 +50,7 @@
             </tbody>
     </div>
     </table>
+>>>>>>> master
     </div>
 </main>
 

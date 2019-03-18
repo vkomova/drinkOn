@@ -3,6 +3,7 @@ from datetime import date
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+# time choices used for manual happy hour entry, might need to delete
 TIME_CHOICES = (('00:00 AM', '00:00 AM'),
                 ('00:30 AM', '00:30 AM'),
                 ('01:00 AM', '01:00 AM'),
@@ -52,6 +53,7 @@ TIME_CHOICES = (('00:00 AM', '00:00 AM'),
                 ('11:00 PM', '11:00 PM'),
                 ('11:30 PM', '11:30 PM'), )
 
+# used for manual happy hour entry, might need to delete
 class Happyhour(models.Model):
     name = models.CharField(max_length=100)
     address = models.TextField('Address')
@@ -73,9 +75,13 @@ class Happyhour(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'Happyhour_id': self.id})
 
+# used for manual happy hour entry, might need to delete
 class Photo(models.Model):
     url = models.CharField(max_length=200)
     happyhour = models.ForeignKey(Happyhour, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Photo for happyhour_id: {self.happyhour_id} @{self.url}"
+
+class Restaurant(models.Model):
+    
