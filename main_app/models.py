@@ -107,8 +107,12 @@ class Hours(models.Model):
     pending = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=timezone.now)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.hours
 
 class HoursVote(models.Model):
     vote = models.BooleanField(default=True)
     hours = models.ForeignKey(Hours, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.vote)
