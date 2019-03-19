@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<main class="form-wrapper padding">
-    <div class ="border">
-        <h1>Log In</h1>
-        <form method="post" class="white-text" action="{% url 'login' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn waves-effect waves-light deep-purple darken-2" value="login">SUBMIT</button>
-            <input type="hidden" name="next" value="{{ next }}">
-        </form><br><br>
+<main class="container">
+    <div class="padding-top">
+        <div class="border">
+            <h1>Log In</h1>
+            <form method="post" class="white-text" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn waves-effect waves-light deep-purple darken-2"
+                    value="login">SUBMIT</button>
+                <input type="hidden" name="next" value="{{ next }}">
+            </form><br><br>
+        </div>
     </div>
 </main>
 
