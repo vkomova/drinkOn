@@ -65,13 +65,36 @@ footer div {
     background-color: white;
 }
 
+/* .h3-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+
+/* .h3-border {
+    width: 40%;
+    border: 5px solid #512da8;
+    border-radius: 25px;
+    padding: 20px;
+    background-color: white;
+} */
+
 .padding-top {
     padding: 50px;
 }
 
-.padding {
-    padding: 25px 50px 50px 50px;
+.border-pad {
+    margin-top: 20px;
 }
+
+.container-pad {
+    padding-bottom: 20px;
+}
+
+.h3-headroom {
+    margin-top: 5px;
+}
+
 
 /* this code is supposed to make the table display nicer, but its not!*/
 .grid {
