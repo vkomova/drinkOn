@@ -1,18 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
-<main class="form-wrapper padding container">
-    <div class="border">
-    <h1>{{restaurant.name}} Details</h1>
+<main class="container container-pad padding-top">
+        <div class="border">
+    <h1 class="h1-override">{{restaurant.name}} Details</h1>
     <div class="row">
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Happy Hour: </span>
-                <ul>
-                    <li>Food</li>
-                    <li>Beer & Wine</li>
-                    <li>Full Bar</li>
-                </ul>
-                <p>{{restaurant.address}}</p>
+                {% if  approved_hours_boolean %}
+                <p>main: {{current_approved_hours}}</p>
+                {% else %}
+                <p>No happy hour data. Please add it below.</p>
+                {% endif %}
+                {% if pending_hours %}
+                <p>pending: {{pending_hours}}</p>
+                <p>Yay Votes</p>
+                <a class="btn" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
+                {% for vote in yay_votes %}
+                <p>yay: {{ vote }}</p>
+                {% endfor %}
+                <p>Nay Votes:</p>
+                <a class="btn red" href="">Vote Nay</a>
+                {% for vote in nay_votes %}
+                <p>nay: {{ vote }}</p>
+                {% endfor %}
+                <br>
+                {% else %}
+                    <form action="{% url 'update_hours' restaurant.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" placeholder="add happy hour time" name="hours">
+                        <!-- <input type="hidden" name="{{restaurant.id}}"> -->
+                        <input class="btn" type="submit" name="submit">
+                    </form>
+                {% endif %}
+                <br>
+                {% if  restaurant.menu_set.all.exists %}
+                {% else %}
+                <p>No menu data. Please add it below.</p>
+                <form action="">
+                    <input type="text" placeholder="add happy hour time" name="hours">
+                    <input class="btn" type="submit" name="submit">
+                </form>
+                {% endif %}
+                <br>
+                <p>Address:</p>
+                <a class="deep-purple-text" href="https://www.google.com/maps/place/{{restaurant.address}}" target="_blank">{{restaurant.address}}</a>
             </div>
         </div>
     </div>

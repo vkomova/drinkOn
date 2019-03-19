@@ -14,4 +14,7 @@ urlpatterns = [
     # path('happyhour/<int:pk>/update/', nearbyhappyhours.HappyhourUpdate.as_view(), name='happyhour_update'),
     # path('happyhour/<int:pk>/delete/', nearbyhappyhours.HappyhourDelete.as_view(), name='happyhour_delete'),
     path('restaurants/details', restaurants.check_restaurant, name='restaurant_details'),
+    path('restaurants/<int:restaurant_id>/details', restaurants.view_restaurant, name='view_restaurant'),
+    path('restaurants/<int:restaurant_id>/update_hours', restaurants.update_hours, name='update_hours'),
+    path('restaurants/<int:restaurant_id>/yay_vote', restaurants.yay_vote, name='yay_vote'),
 ]

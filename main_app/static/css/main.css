@@ -31,10 +31,11 @@ main {
     padding: 0 20px;
 }
 
-.about-h1 {
+.h1-override {
     margin-top: 15px;
     /* font-size: 3.5em; */
 }
+
 
 .center-text {
     text-align: center;
@@ -116,7 +117,7 @@ footer div {
 
 @media only screen and (max-width: 599px) {
     h1 {
-        font-size: 2em !important;
+        font-size: 1.7em !important;
     }
     p {
         font-size: 1em !important;
