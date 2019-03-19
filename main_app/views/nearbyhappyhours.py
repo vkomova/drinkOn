@@ -14,13 +14,18 @@ from ..forms import HappyhourForm
 import uuid
 import boto3
 from ..models import Happyhour, Photo
+import os
+
+GOOGLEMAPSAPIKEY = os.environ['GOOGLE_MAPS_API_KEY']
+IPSTACKKEY = os.environ['IP_STACK_API']
+GMAPSKEY = os.environ['GMAPS]
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'happyhourwdi'
 
-GOOGLE_MAPS_API_KEY = 'AIzaSyDAI6Sb4jrQMIOG_JqZvHhf4h9QUQQ9fOE'
-IP_STACK_API = '5c2404e5cc460bf450a44e309be04b8d'
-GMAPS = googlemaps.Client(key='AIzaSyDAI6Sb4jrQMIOG_JqZvHhf4h9QUQQ9fOE')
+# GOOGLE_MAPS_API_KEY = 'AIzaSyDAI6Sb4jrQMIOG_JqZvHhf4h9QUQQ9fOE'
+# IP_STACK_API = '5c2404e5cc460bf450a44e309be04b8d'
+# GMAPS = googlemaps.Client(key='AIzaSyDAI6Sb4jrQMIOG_JqZvHhf4h9QUQQ9fOE')
 
 def happyhour_index(request):
   happyhourresults = Happyhour.objects.all()
@@ -58,7 +63,7 @@ def nearby(request):
   })
 
 def _get_location():
-  f = urllib.request.urlopen('http://api.ipstack.com/check?access_key=' + IP_STACK_API)
+  f = urllib.request.urlopen('http://api.ipstack.com/check?access_key=' + IPSTACKKEY)
   json_string = f.read()
   f.close()
   location = json.loads(json_string)
@@ -68,7 +73,7 @@ def _get_location():
 
 def _get_nearby_places(location_latitude, location_longitude):
   coordinates = (location_latitude, location_longitude)
-  return GMAPS.places_nearby(
+  return GMAPSKEY.places_nearby(
     location=coordinates,
     # rank_by='distance',
     type='restaurant',
