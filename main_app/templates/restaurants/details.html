@@ -8,16 +8,23 @@
             <div class="card-content">
                 <span class="card-title">Happy Hour: </span>
                 {% if  approved_hours_boolean %}
-                <p>{{current_approved_hours}}</p>
+                <p>main: {{current_approved_hours}}</p>
+                {% for hours in pending_hours_collection %}
+                <p>pending: {{hours}}</p>
+                {% endfor %}
                 {% else %}
                 <p>No happy hour data. Please add it below.</p>
                 {% endif %}
-                <form action="{% url 'update_hours' restaurant.id %}" method="POST">
-                    {% csrf_token %}
-                    <input type="text" placeholder="add happy hour time" name="hours">
-                    <!-- <input type="hidden" name="{{restaurant.id}}"> -->
-                    <input class="btn" type="submit" name="submit">
-                </form>
+                {% if pending_hours_collection.0 %}
+                <!-- do nothing -->
+                {% else %}
+                    <form action="{% url 'update_hours' restaurant.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" placeholder="add happy hour time" name="hours">
+                        <!-- <input type="hidden" name="{{restaurant.id}}"> -->
+                        <input class="btn" type="submit" name="submit">
+                    </form>
+                {% endif %}
                 <br>
                 {% if  restaurant.menu_set.all.exists %}
                 {% else %}
