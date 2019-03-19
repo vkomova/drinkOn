@@ -28,8 +28,6 @@
                         <li><a href="{% url 'about' %}">About</a></li>
                         {% if user.is_authenticated %}
                         <li><a href="{% url 'nearby' %}">Nearby Restaurants</a></li>
-                        <li><a href="{% url 'index' %}">View All Happy Hours</a></li>
-                        <li><a href="{% url 'happyhour_create' %}">Add a Happy Hour!</a></li>
                         <li><a href="{% url 'logout' %}">Log Out</a></li>
                         {% else %}
                         <li><a href="{% url 'signup' %}">Sign Up<i class="material-icons right">person_add</i></a></li>
@@ -41,8 +39,6 @@
             <ul class="sidenav deep-purple lighten-1" id="mobile-menu">
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'nearby' %}">Nearby Restaurants</a></li>
-                <li><a href="{% url 'index' %}">View All Happy Hours</a></li>
-                <li><a href="{% url 'happyhour_create' %}">Add a Happy Hour!</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
                 <li><a href="{% url 'signup' %}" class="white-text">Sign Up<i
