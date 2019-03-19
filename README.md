@@ -1,5 +1,5 @@
 # drinkOn Web App
-by Carly Marsh, Mike Dwyer, and Valerie Komova for General Assembly Project 3
+by Carly Marsh, Mike Dwyer, and Valerie Komova for General Assembly Project 3  
 Click [here](https://github.com/vkomova/drinkOn) to try it out!
 
 
