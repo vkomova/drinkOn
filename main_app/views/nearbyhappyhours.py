@@ -18,14 +18,10 @@ import os
 
 GOOGLEMAPSAPIKEY = os.environ['GOOGLE_MAPS_API_KEY']
 IPSTACKKEY = os.environ['IP_STACK_API']
-GMAPSKEY = os.environ['GMAPS]
+GMAPSKEY = os.environ['GMAPS']
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'happyhourwdi'
-
-# GOOGLE_MAPS_API_KEY = 'AIzaSyDAI6Sb4jrQMIOG_JqZvHhf4h9QUQQ9fOE'
-# IP_STACK_API = '5c2404e5cc460bf450a44e309be04b8d'
-# GMAPS = googlemaps.Client(key='AIzaSyDAI6Sb4jrQMIOG_JqZvHhf4h9QUQQ9fOE')
 
 def happyhour_index(request):
   happyhourresults = Happyhour.objects.all()

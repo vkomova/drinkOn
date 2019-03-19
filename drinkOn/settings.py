@@ -131,6 +131,11 @@ LOGIN_REDIRECT_URL = '/about/'
 
 LOGOUT_REDIRECT_URL = '/'
 
-
+import os
 import environ
 environ.Env()
+
+env = environ.Env(
+   DEBUG=(bool, False)
+)
+environ.Env.read_env()
