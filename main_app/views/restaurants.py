@@ -17,3 +17,15 @@ def check_restaurant(request):
         restaurant = Restaurant.objects.create(name=request.POST['name'], address=request.POST['address'], google_place_id=request.POST['google_place_id'])
         print(restaurant)
         return render(request, 'restaurants/details.html', {'restaurant': restaurant})
+
+def update_hours(request, restaurant_id):
+    print(request.POST)
+    print(request.POST['hours'])
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    print(restaurant.name)
+    if restaurant.hours_set.all().exists():
+        print('set exists')
+        return render(request, 'restaurants/details.html', {'restaurant': restaurant})
+    else:
+        restaurant.hours_set.create(hours=request.POST['hours'], approved=False, pending=True, restaurant=restaurant)
+        return render(request, 'restaurants/details.html', {'restaurant': restaurant})
