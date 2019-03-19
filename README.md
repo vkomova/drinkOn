@@ -10,11 +10,11 @@ Our mission is to connect you to the closest happy hour happening right now and 
 
 
 ## Origins
-Carly, Mike, and Valerie were sitting in class together and were thinking about happy hours... if only there was a simpler way to find a happy hour near you. Other apps have old information, and it is hard to search through websites like Yelp / Google Maps for happy hour specifically. There is no clear / clean app that exists out there for this. We decided to create one!
+Carly, Mike, and Valerie were sitting in class together and were thinking about happy hours... if only there was a simpler way to find a happy hour near you. Other apps have old information, and it is hard to search through websites like Yelp / Google Maps for happy hours specifically. There is no clear / clean app that exists out there for this. We decided to create one!
 
 
 ## Screenshot
-![Recipebook Welcome Page](https://i.imgur.com/1qXdBdP.png "Recipebook Welcome Page")  
+SCREENSHOT HERE
 
 
 ## Technologies Used
