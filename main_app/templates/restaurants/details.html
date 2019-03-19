@@ -7,8 +7,8 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Happy Hour: </span>
-                {% if  restaurant.hours_set.exists %}
-                <p>{{restaurant.hours_set.all.0}}</p>
+                {% if  approved_hours_boolean %}
+                <p>{{current_approved_hours}}</p>
                 {% else %}
                 <p>No happy hour data. Please add it below.</p>
                 {% endif %}
