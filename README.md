@@ -6,7 +6,7 @@ Click [here](https://github.com/vkomova/drinkOn) to try it out!
 
 
 ## Description
-Our mission is to connect you to the closest happy hour happening right now and provide you with a current & updated happy hour drink and food menu. You can search nearby restaurants via the Google Maps API and view happy hour information. This includes happy hour time slot and menu. If no information exists, users can add it. In addition, users can suggest updates if the informaiton listed is outdated. When a user suggests that data be added or changed, it becomes “maybe true”. When 3 or more users have confirmed the change, it becomes true.Our app will prompt users to confirm that informaiton is current if the last addition/update was made over a month ago. 
+Our mission is to connect you to the closest happy hour happening right now and provide you with a current & updated happy hour drink and food menu. You can search nearby restaurants via the Google Maps API and view happy hour information. This includes happy hour time slot and menu. If no information exists, users can add it. In addition, users can suggest updates if the informaiton listed is outdated. When a user suggests that data be added or changed, it becomes “maybe true”. When 3 or more users have confirmed the change, it becomes true. Our app will prompt users to confirm that informaiton is current if the last addition/update was made over a month ago. 
 
 
 ## Origins
