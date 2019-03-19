@@ -9,14 +9,22 @@
                 <span class="card-title">Happy Hour: </span>
                 {% if  approved_hours_boolean %}
                 <p>main: {{current_approved_hours}}</p>
-                {% for hours in pending_hours_collection %}
-                <p>pending: {{hours}}</p>
-                {% endfor %}
                 {% else %}
                 <p>No happy hour data. Please add it below.</p>
                 {% endif %}
-                {% if pending_hours_collection.0 %}
-                <!-- do nothing -->
+                {% if pending_hours %}
+                <p>pending: {{pending_hours}}</p>
+                <p>Yay Votes</p>
+                <a class="btn" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
+                {% for vote in yay_votes %}
+                <p>yay: {{ vote }}</p>
+                {% endfor %}
+                <p>Nay Votes:</p>
+                <a class="btn red" href="">Vote Nay</a>
+                {% for vote in nay_votes %}
+                <p>nay: {{ vote }}</p>
+                {% endfor %}
+                <br>
                 {% else %}
                     <form action="{% url 'update_hours' restaurant.id %}" method="POST">
                         {% csrf_token %}
