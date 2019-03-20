@@ -1,90 +1,128 @@
 {% extends 'base.html' %}
 {% block content %}
 <main class="container container-pad padding-top">
-        <div class="border">
-    <h1 class="h1-override">{{restaurant.name}} Details</h1>
-    <div class="row">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">Happy Hour: </span>
-                {% if  approved_hours_boolean %}
-                <p>{{current_approved_hours}}</p>
-                {% else %}
-                <p>No happy hour data for this restaurant. Please add it below.</p>
-                <form action="{% url 'update_hours' restaurant.id %}" method="POST">
-                    {% csrf_token %}
-                    <input type="text" placeholder="add happy hour time" name="hours">
-                    <!-- <input type="hidden" name="{{restaurant.id}}"> -->
-                    <input class="btn" type="submit" name="submit">
-                </form>
-                {% endif %}
+    <div class="border">
+        <h1 class="h1-override">{{restaurant.name}} Details</h1>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <!-- <span class="card-title">Happy Hour: </span> -->
+                    {% if  approved_hours_boolean %}
+                    <p>Happy Hour: {{current_approved_hours}}</p>
+                    {% else %}
+                    <p>No happy hour data for this restaurant. Please add it below.</p>
+                    <form action="{% url 'update_hours' restaurant.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" placeholder="add happy hour time (ex. 6:00 PM - 8:00 PM)" name="hours">
+                        <!-- <input type="hidden" name="{{restaurant.id}}"> -->
+                        <input class="btn deep-purple darken-2" type="submit" name="submit">
+                    </form>
+                    {% endif %}
 
 
-                {% if pending_hours %}
-                   <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2" href="#dispute">View pending changes.</a><br>
-                <div id="dispute" class="modal">
-                    <div class="modal-content">
-                        <!-- votes here -->
-                        <p>pending: {{pending_hours}}</p>
-                        <p>Yay Votes</p>
-                        <a class="btn" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
-                        {% for vote in yay_votes %}
-                        <p>yay: {{ vote }}</p>
-                        {% endfor %}
-                        <p>Nay Votes:</p>
-                        <a class="btn red" href="{% url 'nay_vote' restaurant.id %}">Vote Nay</a>
-                        {% for vote in nay_votes %}
-                        <p>nay: {{ vote }}</p>
-                        {% endfor %}
+                    {% if pending_hours %}
+                    <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
+                        href="#pending-hours">View pending changes.</a><br>
+                    <div id="pending-hours" class="modal">
+                        <div class="modal-content">
+                            <!-- votes here -->
+                            <p>pending: {{pending_hours}}</p>
+                            <p>Yay Votes</p>
+                            <a class="btn deep-purple darken-2" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
+                            {% for vote in yay_votes %}
+                            <p>yay: {{ vote }}</p>
+                            {% endfor %}
+                            <p>Nay Votes:</p>
+                            <a class="btn red" href="{% url 'nay_vote' restaurant.id %}">Vote Nay</a>
+                            {% for vote in nay_votes %}
+                            <p>nay: {{ vote }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+                    {% else %}
+                    {% if approved_hours_boolean %}
+
+                    <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2" href="#dispute">Dispute
+                        This</a><br>
+                    <div id="dispute" class="modal">
+                        <div class="modal-content">
+                            <h4>Is this data old or incorrect?</h4>
+                            <p>Please suggest an update below:</p>
+                            <form action="{% url 'update_hours' restaurant.id %}" method="POST">
+                                {% csrf_token %}
+                                <input type="text" placeholder="suggest a new happy hour time" name="hours">
+                                <input class="btn" type="submit" name="submit">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+                        </div>
                     </div>
+                    {% endif %}
+                    {% endif %}
+
+
+                    <br>
+                    {% if  approved_menu_boolean %}
+                    <p>Menu:</p><br>
+                    <img src="{{current_approved_menu.menu_photo_url}}" alt="menu"><br>
+
+                    {% if pending_menu %}
+                    <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
+                        href="#dispute-menu">View pending changes.</a><br>
+                    <div id="dispute-menu" class="modal">
+                        <div class="modal-content">
+                            <p>Pending menu:</p>
+                            <img src="{{pending_menu.menu_photo_url}}" alt="pending menu">
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
+                        href="#dispute-menu">Dispute This</a><br>
+                    <div id="dispute-menu" class="modal">
+                        <div class="modal-content">
+                            <h4>Is this menu old or incorrect?</h4>
+                            <p>Please upload a new one below:</p>
+                            <form action="{% url 'update_menu' restaurant.id %}" enctype="multipart/form-data"
+                                method="POST">
+                                {% csrf_token %}
+                                <input type="file" name="menu_file"><br><br>
+                                <input class="btn deep-purple darken-2" type="submit" name="submit" value="upload">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <p>No menu data. Please upload a menu below.</p>
+                    <form action="{% url 'update_menu' restaurant.id %}" enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
+                        <input type="file" name="menu_file"><br><br>
+                        <input class="btn deep-purple darken-2" type="submit" name="submit" value="upload">
+                    </form>
+                    {% endif %}
+                    <br>
+                    <p>Address:</p>
+                    <a class="deep-purple-text" href="https://www.google.com/maps/place/{{restaurant.address}}" target="_blank">{{restaurant.address}}</a>
                 </div>
-                {% else %}
-                {% if approved_hours_boolean %}
-                <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2" href="#dispute">Dispute This</a><br>
-                <div id="dispute" class="modal">
-                    <div class="modal-content">
-                        <h4>Is this data old or incorrect?</h4>
-                        <p>Please suggest an update below:</p>
-                        <form action="{% url 'update_hours' restaurant.id %}" method="POST">
-                            {% csrf_token %}
-                            <input type="text" placeholder="suggest a new happy hour time" name="hours">
-                            <input class="btn" type="submit" name="submit">
-                        </form>        
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
-                    </div>
-                </div>
-                {% endif %}
-                {% endif %}
-
-
-                <br>
-                {% if  restaurant.menu_set.all.exists %}
-                {% else %}
-                <p>No menu data. Please add it below.</p>
-                <form action="">
-                    <input type="text" placeholder="add happy hour time" name="hours">
-                    <input class="btn" type="submit" name="submit">
-                </form>
-                {% endif %}
-                <br>
-                <p>Address:</p>
-                <a class="deep-purple-text" href="https://www.google.com/maps/place/{{restaurant.address}}" target="_blank">{{restaurant.address}}</a>
             </div>
         </div>
     </div>
-    </div>
 </main>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.modal');
-      var instances = M.Modal.init(elems, {});
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, {});
     });
-  </script>
+</script>
 
 
 {% endblock %}
