@@ -15,7 +15,7 @@
                     {% csrf_token %}
                     <input type="text" placeholder="add happy hour time" name="hours">
                     <!-- <input type="hidden" name="{{restaurant.id}}"> -->
-                    <input class="btn" type="submit" name="submit">
+                    <input class="btn deep-purple" type="submit" name="submit">
                 </form>
                 {% endif %}
 
@@ -27,7 +27,7 @@
                         <!-- votes here -->
                         <p>pending: {{pending_hours}}</p>
                         <p>Yay Votes</p>
-                        <a class="btn" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
+                        <a class="btn deep-purple" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
                         {% for vote in yay_votes %}
                         <p>yay: {{ vote }}</p>
                         {% endfor %}
@@ -43,6 +43,7 @@
                 </div>
                 {% else %}
                 {% if approved_hours_boolean %}
+                
                 <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2" href="#dispute">Dispute This</a><br>
                 <div id="dispute" class="modal">
                     <div class="modal-content">
@@ -51,7 +52,7 @@
                         <form action="{% url 'update_hours' restaurant.id %}" method="POST">
                             {% csrf_token %}
                             <input type="text" placeholder="suggest a new happy hour time" name="hours">
-                            <input class="btn" type="submit" name="submit">
+                            <input class="btn deep-purple" type="submit" name="submit">
                         </form>        
                     </div>
                     <div class="modal-footer">
@@ -68,7 +69,7 @@
                 <p>No menu data. Please add it below.</p>
                 <form action="">
                     <input type="text" placeholder="add happy hour time" name="hours">
-                    <input class="btn" type="submit" name="submit">
+                    <input class="btn deep-purple" type="submit" name="submit">
                 </form>
                 {% endif %}
                 <br>
