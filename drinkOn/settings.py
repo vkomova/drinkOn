@@ -135,3 +135,6 @@ import os
 import environ
 environ.Env()
 environ.Env.read_env()
+
+import django_heroku
+django_heroku.settings(locals())
