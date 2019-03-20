@@ -8,31 +8,60 @@
             <div class="card-content">
                 <span class="card-title">Happy Hour: </span>
                 {% if  approved_hours_boolean %}
-                <p>main: {{current_approved_hours}}</p>
+                <p>{{current_approved_hours}}</p>
                 {% else %}
-                <p>No happy hour data. Please add it below.</p>
+                <p>No happy hour data for this restaurant. Please add it below.</p>
+                <form action="{% url 'update_hours' restaurant.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" placeholder="add happy hour time" name="hours">
+                    <!-- <input type="hidden" name="{{restaurant.id}}"> -->
+                    <input class="btn" type="submit" name="submit">
+                </form>
                 {% endif %}
+
+
                 {% if pending_hours %}
-                <p>pending: {{pending_hours}}</p>
-                <p>Yay Votes</p>
-                <a class="btn" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
-                {% for vote in yay_votes %}
-                <p>yay: {{ vote }}</p>
-                {% endfor %}
-                <p>Nay Votes:</p>
-                <a class="btn red" href="">Vote Nay</a>
-                {% for vote in nay_votes %}
-                <p>nay: {{ vote }}</p>
-                {% endfor %}
-                <br>
+                   <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2" href="#dispute">View pending changes.</a><br>
+                <div id="dispute" class="modal">
+                    <div class="modal-content">
+                        <!-- votes here -->
+                        <p>pending: {{pending_hours}}</p>
+                        <p>Yay Votes</p>
+                        <a class="btn" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
+                        {% for vote in yay_votes %}
+                        <p>yay: {{ vote }}</p>
+                        {% endfor %}
+                        <p>Nay Votes:</p>
+                        <a class="btn red" href="{% url 'nay_vote' restaurant.id %}">Vote Nay</a>
+                        {% for vote in nay_votes %}
+                        <p>nay: {{ vote }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+                    </div>
+                </div>
                 {% else %}
-                    <form action="{% url 'update_hours' restaurant.id %}" method="POST">
-                        {% csrf_token %}
-                        <input type="text" placeholder="add happy hour time" name="hours">
-                        <!-- <input type="hidden" name="{{restaurant.id}}"> -->
-                        <input class="btn" type="submit" name="submit">
-                    </form>
+                {% if approved_hours_boolean %}
+                <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2" href="#dispute">Dispute This</a><br>
+                <div id="dispute" class="modal">
+                    <div class="modal-content">
+                        <h4>Is this data old or incorrect?</h4>
+                        <p>Please suggest an update below:</p>
+                        <form action="{% url 'update_hours' restaurant.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" placeholder="suggest a new happy hour time" name="hours">
+                            <input class="btn" type="submit" name="submit">
+                        </form>        
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+                    </div>
+                </div>
                 {% endif %}
+                {% endif %}
+
+
                 <br>
                 {% if  restaurant.menu_set.all.exists %}
                 {% else %}
@@ -50,6 +79,12 @@
     </div>
     </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, {});
+    });
+  </script>
 
 
 {% endblock %}
