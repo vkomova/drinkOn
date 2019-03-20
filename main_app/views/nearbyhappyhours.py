@@ -15,6 +15,7 @@ import uuid
 import boto3
 from ..models import Happyhour, Photo
 import os
+import requests
 
 IPSTACKKEY = os.environ['IP_STACK_API']
 GOOGLE_MAPS_API_KEY = os.environ['GOOGLE_MAPS_API_KEY']
@@ -22,6 +23,9 @@ GMAPS = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'happyhourwdi'
+
+data = requests.get("http://iatacodes.org/api/v6/cities?api_key=c05152c1-441f-430e-9c6c-54dca70f1427")
+res = data.json()['request']
 
 def happyhour_index(request):
   happyhourresults = Happyhour.objects.all()
@@ -59,13 +63,18 @@ def nearby(request):
   })
 
 def _get_location():
-  f = urllib.request.urlopen('http://api.ipstack.com/check?access_key=' + IPSTACKKEY)
-  json_string = f.read()
-  f.close()
-  location = json.loads(json_string)
-  location_latitude = location['latitude']
-  location_longitude = location['longitude']
+  location_latitude = res['client']['lat']
+  location_longitude = res['client']['lng']
   return location_latitude, location_longitude
+
+# def _get_location():
+#   f = urllib.request.urlopen('http://api.ipstack.com/check?access_key=' + IPSTACKKEY)
+#   json_string = f.read()
+#   f.close()
+#   location = json.loads(json_string)
+#   location_latitude = location['latitude']
+#   location_longitude = location['longitude']
+#   return location_latitude, location_longitude
 
 def _get_nearby_places(location_latitude, location_longitude):
   coordinates = (location_latitude, location_longitude)
