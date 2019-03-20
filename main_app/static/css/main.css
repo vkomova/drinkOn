@@ -16,6 +16,7 @@ nav .brand-logo i {
 }
 
 body {
+    font-family: 'Poppins', sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -60,7 +61,7 @@ footer div {
 }
 
 .border {
-    border: 5px solid #512da8;
+    border: 10px solid #512da8;
     border-radius: 25px;
     padding: 20px;
     background-color: white;
