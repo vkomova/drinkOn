@@ -138,4 +138,8 @@ environ.Env()
 environ.Env.read_env()
 
 import django_heroku
+<<<<<<< HEAD
 django_heroku.settings(locals())
+=======
+django_heroku.settings(locals())
+>>>>>>> master

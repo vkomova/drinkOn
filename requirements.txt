@@ -1,4 +1,4 @@
-astroid==2.2.2
+astroid==2.2.4
 boto3==1.9.114
 botocore==1.12.114
 certifi==2019.3.9
@@ -18,6 +18,8 @@ mccabe==0.6.1
 psycopg2==2.7.7
 psycopg2-binary==2.7.7
 pylint==2.3.1
+pylint-django==2.0.6
+pylint-plugin-utils==0.5
 python-dateutil==2.8.0
 pytz==2018.9
 requests==2.21.0
