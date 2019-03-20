@@ -15,19 +15,20 @@
                         {% csrf_token %}
                         <input type="text" placeholder="add happy hour time (ex. 6:00 PM - 8:00 PM)" name="hours">
                         <!-- <input type="hidden" name="{{restaurant.id}}"> -->
-                        <input class="btn" type="submit" name="submit">
+                        <input class="btn deep-purple darken-2" type="submit" name="submit">
                     </form>
                     {% endif %}
 
 
                     {% if pending_hours %}
-                    <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2" href="#pending-hours">View pending changes.</a><br>
+                    <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
+                        href="#pending-hours">View pending changes.</a><br>
                     <div id="pending-hours" class="modal">
                         <div class="modal-content">
                             <!-- votes here -->
                             <p>pending: {{pending_hours}}</p>
                             <p>Yay Votes</p>
-                            <a class="btn" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
+                            <a class="btn deep-purple darken-2" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
                             {% for vote in yay_votes %}
                             <p>yay: {{ vote }}</p>
                             {% endfor %}
@@ -92,7 +93,7 @@
                                 method="POST">
                                 {% csrf_token %}
                                 <input type="file" name="menu_file"><br><br>
-                                <input class="btn" type="submit" name="submit" value="upload">
+                                <input class="btn deep-purple darken-2" type="submit" name="submit" value="upload">
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -105,13 +106,12 @@
                     <form action="{% url 'update_menu' restaurant.id %}" enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
                         <input type="file" name="menu_file"><br><br>
-                        <input class="btn" type="submit" name="submit" value="upload">
+                        <input class="btn deep-purple darken-2" type="submit" name="submit" value="upload">
                     </form>
                     {% endif %}
                     <br>
                     <p>Address:</p>
-                    <a class="deep-purple-text" href="https://www.google.com/maps/place/{{restaurant.address}}"
-                        target="_blank">{{restaurant.address}}</a>
+                    <a class="deep-purple-text" href="https://www.google.com/maps/place/{{restaurant.address}}" target="_blank">{{restaurant.address}}</a>
                 </div>
             </div>
         </div>
