@@ -8,9 +8,9 @@
             <div class="card-content">
                 <span class="card-title">Happy Hour: </span>
                 {% if  approved_hours_boolean %}
-                <p>main: {{current_approved_hours}}</p>
+                <p>{{current_approved_hours}}</p>
                 {% else %}
-                <p>No happy hour data. Please add it below.</p>
+                <p>No happy hour data for this restaurant. Please add it below.</p>
                 {% endif %}
                 {% if pending_hours %}
                 <p>pending: {{pending_hours}}</p>
@@ -20,7 +20,7 @@
                 <p>yay: {{ vote }}</p>
                 {% endfor %}
                 <p>Nay Votes:</p>
-                <a class="btn red" href="">Vote Nay</a>
+                <a class="btn red" href="{% url 'nay_vote' restaurant.id %}">Vote Nay</a>
                 {% for vote in nay_votes %}
                 <p>nay: {{ vote }}</p>
                 {% endfor %}

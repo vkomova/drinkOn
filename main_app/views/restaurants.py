@@ -88,3 +88,17 @@ def yay_vote(request, restaurant_id):
         pending_hours.approved = True
         pending_hours.save()
     return redirect('view_restaurant', restaurant_id=restaurant.id)
+
+def nay_vote(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    pending_hours = restaurant.hours_set.filter(pending=True).order_by('-created_at')[0]
+    if pending_hours.hoursvote_set.filter(user=request.user).exists():
+        pass
+    else:
+        pending_hours.hoursvote_set.create(vote=False, user=request.user)
+    nay_votes = pending_hours.hoursvote_set.filter(vote=False)
+    if len(nay_votes) >= 3:
+        pending_hours.pending = False
+        pending_hours.approved = False
+        pending_hours.save()
+    return redirect('view_restaurant', restaurant_id=restaurant.id)
