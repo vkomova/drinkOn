@@ -6,9 +6,9 @@
     <div class="row">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Happy Hour: </span>
+                <!-- <span class="card-title">Happy Hour: </span> -->
                 {% if  approved_hours_boolean %}
-                <p>{{current_approved_hours}}</p>
+                <p>Happy Hour: {{current_approved_hours}}</p>
                 {% else %}
                 <p>No happy hour data for this restaurant. Please add it below.</p>
                 <form action="{% url 'update_hours' restaurant.id %}" method="POST">
@@ -65,11 +65,14 @@
 
                 <br>
                 {% if  restaurant.menu_set.all.exists %}
+                <p>Menu:</p><br>
+                <img src="{{current_approved_menu.menu_photo_url}}" alt="menu"><br>
                 {% else %}
-                <p>No menu data. Please add it below.</p>
-                <form action="">
-                    <input type="text" placeholder="add happy hour time" name="hours">
-                    <input class="btn" type="submit" name="submit">
+                <p>No menu data. Please upload a menu below.</p>
+                <form action="{% url 'update_menu' restaurant.id %}" enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    <input type="file" name="menu_file"><br><br>
+                    <input class="btn" type="submit" name="submit" value="upload">
                 </form>
                 {% endif %}
                 <br>
