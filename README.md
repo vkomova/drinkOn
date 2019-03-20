@@ -1,6 +1,6 @@
 # drinkOn Web App
 by Carly Marsh, Mike Dwyer, and Valerie Komova for General Assembly Project 3  
-Click [here](https://github.com/vkomova/drinkOn) to try it out!
+Click [here](https://drinkon-wdi.herokuapp.com/) to try it out!
 
 
 
@@ -30,7 +30,7 @@ SCREENSHOT HERE
 
 
 ## Getting Started
-Please visit https://github.com/vkomova/drinkOn to try out our app!  
+Please visit https://drinkon-wdi.herokuapp.com to try out our app!  
 
 
 ## Next Steps
