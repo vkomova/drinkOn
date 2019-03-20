@@ -60,9 +60,13 @@ def nearby(request):
   restaurant_list = list(zip(print_results[0], print_results[1], print_results[2]))
   return render(request, 'nearby.html', {
     'restaurant_list': restaurant_list,
+    'lat': res['client']['lat'],
+    'lng': res['client']['lng'],
   })
 
 def _get_location():
+  print(res['client']['lat'])
+  print(res['client']['lng'])
   location_latitude = res['client']['lat']
   location_longitude = res['client']['lng']
   return location_latitude, location_longitude
