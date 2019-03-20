@@ -50,6 +50,14 @@ p {
     font-size: 20px;
 }
 
+.row-padding {
+    padding-left: 0 !important;
+}
+
+.img-max-width {
+    max-width: 80%;
+    max-height: 450px;
+}
 /* footer {
     border-top: 2px solid white;
 } */

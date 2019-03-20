@@ -13,8 +13,11 @@
                     <p>No happy hour data for this restaurant. Please add it below.</p>
                     <form action="{% url 'update_hours' restaurant.id %}" method="POST">
                         {% csrf_token %}
-                        <input type="text" placeholder="add happy hour time (ex. 6:00 PM - 8:00 PM)" name="hours">
-                        <!-- <input type="hidden" name="{{restaurant.id}}"> -->
+                        <div class="row">
+                            <div class="col s6 row-padding">
+                                <input type="text" placeholder="add happy hour time (ex. 6:00 PM - 8:00 PM)" name="hours">
+                            </div>
+                        </div>
                         <input class="btn deep-purple darken-2" type="submit" name="submit">
                     </form>
                     {% endif %}
@@ -54,7 +57,7 @@
                             <form action="{% url 'update_hours' restaurant.id %}" method="POST">
                                 {% csrf_token %}
                                 <input type="text" placeholder="suggest a new happy hour time" name="hours">
-                                <input class="btn" type="submit" name="submit">
+                                <input class="btn deep-purple darken-2" type="submit" name="submit">
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -63,20 +66,21 @@
                     </div>
                     {% endif %}
                     {% endif %}
-
+                    <br>
+                    <hr>
 
                     <br>
                     {% if  approved_menu_boolean %}
                     <p>Menu:</p><br>
-                    <img src="{{current_approved_menu.menu_photo_url}}" alt="menu"><br>
+                    <img class="img-max-width" src="{{current_approved_menu.menu_photo_url}}" alt="menu"><br>
 
                     {% if pending_menu %}
                     <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
                         href="#dispute-menu">View pending changes.</a><br>
                     <div id="dispute-menu" class="modal">
-                        <div class="modal-content">
-                            <p>Pending menu:</p>
-                            <img src="{{pending_menu.menu_photo_url}}" alt="pending menu">
+                        <div class="modal-content container">
+                            <p class="current_approved_hours">Pending menu:</p>
+                            <img class="img-max-width" src="{{pending_menu.menu_photo_url}}" alt="pending menu">
                         </div>
                         <div class="modal-footer">
                             <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
@@ -102,13 +106,15 @@
                     </div>
                     {% endif %}
                     {% else %}
-                    <p>No menu data. Please upload a menu below.</p>
+                    <p>No menu data for this restaurant. Please upload a menu below.</p><br>
                     <form action="{% url 'update_menu' restaurant.id %}" enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
                         <input type="file" name="menu_file"><br><br>
                         <input class="btn deep-purple darken-2" type="submit" name="submit" value="upload">
                     </form>
                     {% endif %}
+                    <br>
+                    <hr>
                     <br>
                     <p>Address:</p>
                     <a class="deep-purple-text" href="https://www.google.com/maps/place/{{restaurant.address}}" target="_blank">{{restaurant.address}}</a>
