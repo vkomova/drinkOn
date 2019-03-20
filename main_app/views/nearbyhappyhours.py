@@ -16,9 +16,9 @@ import boto3
 from ..models import Happyhour, Photo
 import os
 
-GOOGLEMAPSAPIKEY = os.environ['GOOGLE_MAPS_API_KEY']
 IPSTACKKEY = os.environ['IP_STACK_API']
-GMAPSKEY = os.environ['GMAPS']
+GOOGLE_MAPS_API_KEY = os.environ['GOOGLE_MAPS_API_KEY']
+GMAPS = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'happyhourwdi'
@@ -69,7 +69,7 @@ def _get_location():
 
 def _get_nearby_places(location_latitude, location_longitude):
   coordinates = (location_latitude, location_longitude)
-  return GMAPSKEY.places_nearby(
+  return GMAPS.places_nearby(
     location=coordinates,
     # rank_by='distance',
     type='restaurant',
