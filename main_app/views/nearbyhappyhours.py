@@ -63,6 +63,13 @@ class HappyhourDelete(LoginRequiredMixin, DeleteView):
 
 def nearby(request):
   address = request.POST.get('address')
+  if address == None:
+    address = request.session.get('session_address', 'no_address')
+    if address == 'no_address':
+      return redirect('/inputnearby/')
+  else: 
+    request.session['session_address'] = address
+    request.session.modified = True
   geolocator = Nominatim(user_agent="drinkon")
   location = geolocator.geocode(address)
   location_latitude = location.latitude
