@@ -16,6 +16,7 @@ import boto3
 from ..models import Happyhour, Photo
 import os
 import requests
+from geopy.geocoders import Nominatim
 
 IPSTACKKEY = os.environ['IP_STACK_API']
 GOOGLE_MAPS_API_KEY = os.environ['GOOGLE_MAPS_API_KEY']
@@ -26,6 +27,12 @@ BUCKET = 'happyhourwdi'
 
 data = requests.get("http://iatacodes.org/api/v6/cities?api_key=c05152c1-441f-430e-9c6c-54dca70f1427")
 res = data.json()['request']
+
+def inputnearby(request):
+  # address = request.POST.get('address')
+  # print(address)
+  # location = _get_location(address)
+  return render(request, 'inputnearby.html')
 
 def happyhour_index(request):
   happyhourresults = Happyhour.objects.all()
@@ -55,30 +62,16 @@ class HappyhourDelete(LoginRequiredMixin, DeleteView):
   success_url = '/happyhour/'
 
 def nearby(request):
-  coordinates = _get_location()
-  print_results = _display_nearby_places(_get_nearby_places(coordinates[0], coordinates[1]))
+  address = request.POST.get('address')
+  geolocator = Nominatim(user_agent="drinkon")
+  location = geolocator.geocode(address)
+  location_latitude = location.latitude
+  location_longitude = location.longitude
+  print_results = _display_nearby_places(_get_nearby_places(location_latitude, location_longitude))
   restaurant_list = list(zip(print_results[0], print_results[1], print_results[2]))
   return render(request, 'nearby.html', {
     'restaurant_list': restaurant_list,
-    'lat': res['client']['lat'],
-    'lng': res['client']['lng'],
   })
-
-def _get_location():
-  print(res['client']['lat'])
-  print(res['client']['lng'])
-  location_latitude = res['client']['lat']
-  location_longitude = res['client']['lng']
-  return location_latitude, location_longitude
-
-# def _get_location():
-#   f = urllib.request.urlopen('http://api.ipstack.com/check?access_key=' + IPSTACKKEY)
-#   json_string = f.read()
-#   f.close()
-#   location = json.loads(json_string)
-#   location_latitude = location['latitude']
-#   location_longitude = location['longitude']
-#   return location_latitude, location_longitude
 
 def _get_nearby_places(location_latitude, location_longitude):
   coordinates = (location_latitude, location_longitude)
