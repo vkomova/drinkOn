@@ -43,6 +43,7 @@
                                     dispute
                                     {% endif %}
                                 </span> this change.</p>
+                                <p>This update is still pending, thank you for your patience.</p>
                             {% else %}
 
                             <p>Is this correct?</p><br>
@@ -86,16 +87,16 @@
                     <p>Menu:</p><br>
 
                     <img class="materialboxed img-max-width" src="{{current_approved_menu.menu_photo_url}}" alt="menu"><br>
-
-                    
-
                     {% if pending_menu %}
                     <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
                         href="#dispute-menu">View pending changes.</a><br>
                     <div id="dispute-menu" class="modal">
-                        <div class="modal-content container">
-                            <p class="current_approved_hours">Pending menu:</p>
-                            <img class="img-max-width" src="{{pending_menu.menu_photo_url}}" alt="pending menu">
+                        <div class="modal-content">
+                            <p>A user has submitted the following updated menu:</p><br>
+                            <img class="materialboxed img-max-width" src="{{pending_menu.menu_photo_url}}" alt="pending menu"><br>
+                            <p>Is this correct?</p><br>
+                            <a class="btn deep-purple darken-2" href="{% url 'menu_yay_vote' restaurant.id %}">Confirm Change</a>
+                            <a class="btn red" href="{% url 'menu_nay_vote' restaurant.id %}">Dispute Change</a>
                         </div>
                         <div class="modal-footer">
                             <a href="#!" class="modal-close waves-effect btn-flat">Close</a>

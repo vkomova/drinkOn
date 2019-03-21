@@ -135,3 +135,31 @@ def update_menu(request, restaurant_id):
     #         menu.menuvote_set.create(vote=True, menu=menu, user=request.user)
     #     else: 
     #         menu = restaurant.menu_set.create(menu_photo_url=request.POST['menu_photo_url'], approved=True, pending=False, restaurant=restaurant)
+
+def menu_yay_vote(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    pending_menu = restaurant.menu_set.filter(pending=True).order_by('-created_at')[0]
+    if pending_menu.menuvote_set.filter(user=request.user).exists():
+        pass
+    else:
+        pending_menu.menuvote_set.create(vote=True, user=request.user)
+    menu_yay_votes =  pending_menu.menuvote_set.filter(vote=True)
+    if len(menu_yay_votes) >= 3:
+        pending_menu.pending = False
+        pending_menu.approved = True
+        pending_menu.save()
+    return redirect('view_restaurant', restaurant_id=restaurant.id)
+
+def menu_nay_vote(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    pending_menu = restaurant.menu_set.filter(pending=True).order_by('-created_at')[0]
+    if pending_menu.menuvote_set.filter(user=request.user).exists():
+        pass
+    else:
+        pending_menu.menuvote_set.create(vote=False, user=request.user)
+    menu_nay_votes = pending_menu.menuvote_set.filter(vote=False)
+    if len(menu_nay_votes) >= 3:
+        pending_menu.pending = False
+        pending_menu.approved = False
+        pending_menu.save()
+    return redirect('view_restaurant', restaurant_id=restaurant.id)
