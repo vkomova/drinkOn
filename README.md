@@ -13,7 +13,7 @@ Our mission is to connect you to the closest happy hour happening right now and 
 Carly, Mike, and Valerie were sitting in class together and were thinking about happy hours... if only there was a simpler way to find a happy hour near you. Other apps have old information, and it is hard to search through websites like Yelp / Google Maps for happy hours specifically. There is no clear / clean app that exists out there for this. We decided to create one!
 
 
-## Screenshot
+## Screenshots
 ![Home Page](https://i.imgur.com/1ZpvlwM.png)
 ![Search Page](https://i.imgur.com/tSEqygk.png)
 ![Results Page](https://i.imgur.com/FdTfsdR.png)
