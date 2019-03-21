@@ -6,7 +6,7 @@ urlpatterns = [
     path('about/', landing.about, name='about'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', landing.signup, name='signup'),
-    path('inputnearby/', nearbyhappyhours.inputnearby, name='input_nearby'),
+    path('inputnearby/', nearbyhappyhours.inputnearby, name='inputnearby'),
     path('nearby/', nearbyhappyhours.nearby, name='nearby'),
     path('restaurants/details', restaurants.check_restaurant, name='restaurant_details'),
     path('restaurants/<int:restaurant_id>/details', restaurants.view_restaurant, name='view_restaurant'),
