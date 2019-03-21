@@ -3,14 +3,12 @@ from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView
 import uuid
 import boto3
 from ..models import Restaurant, Menu, MenuVote, Hours, HoursVote
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'happyhourwdi'
-
 
 def view_restaurant(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)

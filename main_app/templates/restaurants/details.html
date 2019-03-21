@@ -1,34 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <main class="container container-pad padding-top">
     <div class="border">
         <h1 class="h1-override">{{restaurant.name}}</h1>
         <div class="row">
             <div class="card">
                 <div class="card-content">
-                    <!-- <span class="card-title">Happy Hour: </span> -->
                     {% if  approved_hours_boolean %}
-                    <p>Happy Hour: {{current_approved_hours}}</p><br>
+                        <p>Happy Hour: {{current_approved_hours}}</p><br>
                     {% else %}
-                    <p>No happy hour data for this restaurant. Please add it below.</p>
-                    <form action="{% url 'update_hours' restaurant.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col s6 row-padding">
-                                <input type="text" placeholder="add happy hour time (ex. 6:00 PM - 8:00 PM)" name="hours">
+                        <p>No happy hour data for this restaurant. Please add it below.</p>
+                        <form action="{% url 'update_hours' restaurant.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col s6 row-padding">
+                                    <input type="text" placeholder="add happy hour time (ex. 6:00 PM - 8:00 PM)" name="hours">
+                                </div>
                             </div>
-                        </div>
-                        <input class="btn deep-purple darken-2" type="submit" name="submit">
-                    </form>
+                            <input class="btn deep-purple darken-2" type="submit" name="submit">
+                        </form>
                     {% endif %}
 
-
                     {% if pending_hours %}
-                    <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
+                        <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
                         href="#pending-hours">View pending changes.</a><br>
 
-
-                    <div id="pending-hours" class="modal">
+                        <div id="pending-hours" class="modal">
                             <div class="modal-content">
                                 <!-- votes here -->
                                 <p>A user has submitted the following edit to the Happy Hour:</p><br>
@@ -51,14 +49,13 @@
                                 <a class="btn red" href="{% url 'nay_vote' restaurant.id %}">Dispute Change</a>
     
                                 {% endif %}
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
-                            </div>
+                        {% else %}
 
-
-                    </div>
-                    {% else %}
                     {% if approved_hours_boolean %}
 
                     <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2" href="#dispute">Correct This</a><br>
@@ -163,6 +160,5 @@
         var instances = M.Modal.init(elems, {});
     });
 </script>
-
 
 {% endblock %}

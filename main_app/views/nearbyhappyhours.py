@@ -3,17 +3,14 @@ import json
 import googlemaps
 from datetime import datetime
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from ..forms import HappyhourForm
 import uuid
 import boto3
-from ..models import Happyhour, Photo
+from ..models import Photo
 import os
 import requests
 from geopy.geocoders import Nominatim
@@ -29,37 +26,7 @@ data = requests.get("http://iatacodes.org/api/v6/cities?api_key=c05152c1-441f-43
 res = data.json()['request']
 
 def inputnearby(request):
-  # address = request.POST.get('address')
-  # print(address)
-  # location = _get_location(address)
   return render(request, 'inputnearby.html')
-
-def happyhour_index(request):
-  happyhourresults = Happyhour.objects.all()
-  return render(request, 'happyhour/index.html', { 'happyhourresults': happyhourresults })
-
-def happyhour_detail(request, happyhour_id):
-  happyhour = Happyhour.objects.get(id=happyhour_id)
-  happyhour_form = HappyhourForm()
-  return render(request, 'happyhour/detail.html', { 
-    'happyhour': happyhour,
-    'happyhour_form': happyhour_form
-  })
-
-class HappyhourCreate(CreateView):
-  model = Happyhour
-  fields = '__all__'
-  success_url = '/happyhour/'
-
-class HappyhourUpdate(UpdateView):
-  model = Happyhour
-  fields = ['name', 'address', 'time_start', 'time_end', 'added']
-  success_url = '/happyhour/'
-
-# Not sure if we will need a delete form but included just in case
-class HappyhourDelete(LoginRequiredMixin, DeleteView):
-  model = Happyhour
-  success_url = '/happyhour/'
 
 def nearby(request):
   address = request.POST.get('address')
