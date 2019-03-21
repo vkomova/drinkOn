@@ -25,9 +25,11 @@ BUCKET = 'happyhourwdi'
 data = requests.get("http://iatacodes.org/api/v6/cities?api_key=c05152c1-441f-430e-9c6c-54dca70f1427")
 res = data.json()['request']
 
+@login_required
 def inputnearby(request):
   return render(request, 'inputnearby.html')
 
+@login_required
 def nearby(request):
   address = request.POST.get('address')
   if address == None:
@@ -49,15 +51,16 @@ def nearby(request):
     'restaurant_list': restaurant_list,
   })
 
+@login_required
 def _get_nearby_places(location_latitude, location_longitude):
   coordinates = (location_latitude, location_longitude)
   return GMAPS.places_nearby(
     location=coordinates,
     rank_by='distance',
     type='restaurant',
-    # radius=5000
   )
 
+@login_required
 def _display_nearby_places(nearby_json):
     resultsname = []
     resultsaddress =[]
@@ -67,17 +70,3 @@ def _display_nearby_places(nearby_json):
         resultsaddress.append(result['vicinity'])
         resultsid.append(result['place_id'])
     return resultsname, resultsaddress, resultsid
-
-def add_photo(request, happyhour_id):
-  photo_file = request.FILES.get('photo-file', None)
-  if photo_file:
-    s3 = boto3.client('s3')
-    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-    try:
-      s3.upload_fileobj(photo_file, BUCKET, key)
-      url = f"{S3_BASE_URL}{BUCKET}/{key}"
-      photo = Photo(url=url, happyhour_id=happyhour_id)
-      photo.save()
-    except:
-      print('An error occurred uploading file to S3')
-  return redirect('detail', happyhour_id=happyhour_id)

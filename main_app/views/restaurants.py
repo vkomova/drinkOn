@@ -10,6 +10,7 @@ from ..models import Restaurant, Menu, MenuVote, Hours, HoursVote
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'happyhourwdi'
 
+@login_required
 def view_restaurant(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)
     user_hours_vote = ''
@@ -60,6 +61,7 @@ def view_restaurant(request, restaurant_id):
         'user_menu_vote': user_menu_vote,
         })
 
+@login_required
 def check_restaurant(request):
     if Restaurant.objects.filter(google_place_id=request.POST['google_place_id']).exists():
         restaurant = Restaurant.objects.filter(google_place_id=request.POST['google_place_id'])[0]
@@ -68,6 +70,7 @@ def check_restaurant(request):
         restaurant = Restaurant.objects.create(name=request.POST['name'], address=request.POST['address'], google_place_id=request.POST['google_place_id'])
         return redirect('view_restaurant', restaurant_id=restaurant.id)
 
+@login_required
 def update_hours(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)
     if len(restaurant.hours_set.filter(pending=True)) == 0:
@@ -78,6 +81,7 @@ def update_hours(request, restaurant_id):
             hours = restaurant.hours_set.create(hours=request.POST['hours'], approved=True, pending=False, restaurant=restaurant)
     return redirect('view_restaurant', restaurant_id=restaurant.id)
 
+@login_required
 def yay_vote(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)
     pending_hours = restaurant.hours_set.filter(pending=True).order_by('-created_at')[0]
@@ -92,6 +96,7 @@ def yay_vote(request, restaurant_id):
         pending_hours.save()
     return redirect('view_restaurant', restaurant_id=restaurant.id)
 
+@login_required
 def nay_vote(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)
     pending_hours = restaurant.hours_set.filter(pending=True).order_by('-created_at')[0]
@@ -106,6 +111,7 @@ def nay_vote(request, restaurant_id):
         pending_hours.save()
     return redirect('view_restaurant', restaurant_id=restaurant.id)
 
+@login_required
 def update_menu(request, restaurant_id):
     menu_file = request.FILES.get('menu_file', None)
     restaurant = Restaurant.objects.get(id=restaurant_id)
@@ -127,13 +133,8 @@ def update_menu(request, restaurant_id):
         except:
             print('An error occurred uploading the menu.')
     return redirect('view_restaurant', restaurant_id=restaurant.id)
-    # if len(restaurant.menu_set.filter(pending=True)) == 0:
-    #     if restaurant.menu_set.filter(approved=True).exists():
-    #         menu = restaurant.menu_set.create(menu_photo_url=request.POST['menu_photo_url'], approved=False, pending=True, restaurant=restaurant)
-    #         menu.menuvote_set.create(vote=True, menu=menu, user=request.user)
-    #     else: 
-    #         menu = restaurant.menu_set.create(menu_photo_url=request.POST['menu_photo_url'], approved=True, pending=False, restaurant=restaurant)
 
+@login_required
 def menu_yay_vote(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)
     pending_menu = restaurant.menu_set.filter(pending=True).order_by('-created_at')[0]
@@ -148,6 +149,7 @@ def menu_yay_vote(request, restaurant_id):
         pending_menu.save()
     return redirect('view_restaurant', restaurant_id=restaurant.id)
 
+@login_required
 def menu_nay_vote(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)
     pending_menu = restaurant.menu_set.filter(pending=True).order_by('-created_at')[0]
