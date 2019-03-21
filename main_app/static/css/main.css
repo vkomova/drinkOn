@@ -26,6 +26,10 @@ main {
     flex: 1 0 auto;
 }
 
+td {
+    font-size: 16px;
+}
+
 .about {
     border-radius: 25px;
     border: 2px solid white;
@@ -48,6 +52,7 @@ main {
 
 p {
     font-size: 20px;
+    font-weight: bold;
 }
 
 .row-padding {
