@@ -6,7 +6,7 @@ Click [here](https://drinkon-wdi.herokuapp.com/) to try it out!
 
 
 ## Description
-Our mission is to connect you to the closest happy hour happening right now and provide you with a current & updated happy hour drink and food menu. You can search nearby restaurants via the Google Places API and view happy hour information. This includes happy hour time slot and menu. If no information exists, users can add it. In addition, users can suggest updates if the informaiton listed is outdated. When a user suggests that data be changed, it becomes “maybe true”. When 3 or more users have confirmed the change, it becomes true.  
+Our mission is to connect you to the closest happy hour happening right now and provide you with a current & updated happy hour drink and food menu. You can search nearby restaurants via the Google Places API and view happy hour information. This includes happy hour time slot and menu. If no information exists, users can add it. In addition, users can suggest updates if the informaiton listed is outdated. When a user suggests that data be changed, it becomes “maybe true”. When 3 or more users have confirmed the change, it becomes true. When 3 or more users dispute the change, it is discarded.
 
 
 ## Origins
