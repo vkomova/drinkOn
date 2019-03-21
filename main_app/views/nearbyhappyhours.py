@@ -51,7 +51,6 @@ def nearby(request):
     'restaurant_list': restaurant_list,
   })
 
-@login_required
 def _get_nearby_places(location_latitude, location_longitude):
   coordinates = (location_latitude, location_longitude)
   return GMAPS.places_nearby(
@@ -60,7 +59,6 @@ def _get_nearby_places(location_latitude, location_longitude):
     type='restaurant',
   )
 
-@login_required
 def _display_nearby_places(nearby_json):
     resultsname = []
     resultsaddress =[]
