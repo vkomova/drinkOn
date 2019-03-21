@@ -72,6 +72,8 @@ def nearby(request):
     request.session.modified = True
   geolocator = Nominatim(user_agent="drinkon")
   location = geolocator.geocode(address)
+  if location == None:
+    return redirect('/inputnearby/')
   location_latitude = location.latitude
   location_longitude = location.longitude
   print_results = _display_nearby_places(_get_nearby_places(location_latitude, location_longitude))
