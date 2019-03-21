@@ -39,8 +39,8 @@
             </div>
             <ul class="sidenav deep-purple lighten-1" id="mobile-menu">
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'nearby' %}">Nearby Restaurants</a></li>
-                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                <li><a href="{% url 'nearby' %}" class="white-text">Nearby Restaurants</a></li>
+                <li><a href="{% url 'logout' %}" class="white-text">Log Out</a></li>
                 {% else %}
                 <li><a href="{% url 'signup' %}" class="white-text">Sign Up<i
                             class="material-icons right white-text">person_add</i></a></li>
@@ -55,6 +55,10 @@
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems, {});
+
+            var materialBoxed = document.querySelectorAll('.materialboxed');
+            var instances = M.Materialbox.init(materialBoxed, {});
+
         });
     </script>
 

@@ -14,7 +14,8 @@ BUCKET = 'happyhourwdi'
 
 def view_restaurant(request, restaurant_id):
     restaurant = Restaurant.objects.get(id=restaurant_id)
-
+    user_hours_vote = ''
+    user_menu_vote = ''
     approved_hours_boolean = restaurant.hours_set.filter(approved=True).exists()
     current_approved_hours = ''
     pending_hours_collection = restaurant.hours_set.filter(pending=True).order_by('-created_at')
@@ -23,12 +24,13 @@ def view_restaurant(request, restaurant_id):
         pending_hours = pending_hours_collection[0]
         yay_votes =  pending_hours.hoursvote_set.filter(vote=True)
         nay_votes =  pending_hours.hoursvote_set.filter(vote=False)
+        if HoursVote.objects.filter(user=request.user, hours=pending_hours).exists():
+            user_hours_vote = HoursVote.objects.get(user=request.user, hours=pending_hours)
     else:
         yay_votes =  ''
         nay_votes =  ''
     if approved_hours_boolean:
         current_approved_hours = restaurant.hours_set.filter(approved=True).order_by('-created_at')[0]
-
     approved_menu_boolean = restaurant.menu_set.filter(approved=True).exists()
     current_approved_menu = ''
     pending_menu_collection = restaurant.menu_set.filter(pending=True).order_by('-created_at')
@@ -37,12 +39,13 @@ def view_restaurant(request, restaurant_id):
         pending_menu = pending_menu_collection[0]
         menu_yay_votes =  pending_menu.menuvote_set.filter(vote=True)
         menu_nay_votes =  pending_menu.menuvote_set.filter(vote=False)
+        if MenuVote.objects.filter(user=request.user, menu=pending_menu).exists():
+            user_menu_vote = MenuVote.objects.get(user=request.user, menu=pending_menu)
     else:
         menu_yay_votes =  ''
         menu_nay_votes =  ''
     if approved_menu_boolean:
         current_approved_menu = restaurant.menu_set.filter(approved=True).order_by('-created_at')[0]
-
     return render(request, 'restaurants/details.html', {
         'restaurant': restaurant,
         'approved_hours_boolean': approved_hours_boolean,
@@ -55,6 +58,8 @@ def view_restaurant(request, restaurant_id):
         'pending_menu': pending_menu,
         'menu_yay_votes': menu_yay_votes,
         'menu_nay_votes': menu_nay_votes,
+        'user_hours_vote': user_hours_vote,
+        'user_menu_vote': user_menu_vote,
         })
 
 def check_restaurant(request):
