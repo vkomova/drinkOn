@@ -6,7 +6,7 @@
         <form action="{% url 'nearby'%}" method="post">
             {% csrf_token %}
             <p>Enter Location: <input type="text" name="address" value=""></p>
-            <input type="submit" value="submit" class="btn deep-purple"></input>
+            <input type="submit" value="submit" class="btn deep-purple" placeholder="Los Angeles" required></input>
         </form>
     </div>
 </main>

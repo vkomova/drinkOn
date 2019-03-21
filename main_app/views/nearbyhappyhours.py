@@ -84,9 +84,9 @@ def _get_nearby_places(location_latitude, location_longitude):
   coordinates = (location_latitude, location_longitude)
   return GMAPS.places_nearby(
     location=coordinates,
-    # rank_by='distance',
+    rank_by='distance',
     type='restaurant',
-    radius=5000
+    # radius=5000
   )
 
 def _display_nearby_places(nearby_json):
