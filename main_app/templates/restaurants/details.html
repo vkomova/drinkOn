@@ -26,24 +26,37 @@
                     {% if pending_hours %}
                     <a class="waves-effect waves-light modal-trigger yellow-text text-darken-2"
                         href="#pending-hours">View pending changes.</a><br>
+
+
                     <div id="pending-hours" class="modal">
                         <div class="modal-content">
                             <!-- votes here -->
-                            <p>pending: {{pending_hours}}</p>
-                            <p>Yay Votes</p>
-                            <a class="btn deep-purple darken-2" href="{% url 'yay_vote' restaurant.id %}">Vote Yay</a>
-                            {% for vote in yay_votes %}
-                            <p>yay: {{ vote }}</p>
-                            {% endfor %}
-                            <p>Nay Votes:</p>
-                            <a class="btn red" href="{% url 'nay_vote' restaurant.id %}">Vote Nay</a>
-                            {% for vote in nay_votes %}
-                            <p>nay: {{ vote }}</p>
-                            {% endfor %}
+                            <p>A user has submitted the following edit to the Happy Hour:</p><br>
+                            <p>{{pending_hours}}</p><br>
+
+                            {% if user_hours_vote %}
+                            <p>You have already voted to 
+                                <span>
+                                    {% if user_hours_vote.vote %}
+                                    confirm
+                                    {% else %}
+                                    dispute
+                                    {% endif %}
+                                </span> this change.</p>
+                            {% else %}
+
+                            <p>Is this correct?</p><br>
+                            <a class="btn deep-purple darken-2" href="{% url 'yay_vote' restaurant.id %}">Confirm Change</a>
+                            <a class="btn red" href="{% url 'nay_vote' restaurant.id %}">Dispute Change</a>
+
+                            {% endif %}
+
                         </div>
                         <div class="modal-footer">
                             <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
                         </div>
+
+
                     </div>
                     {% else %}
                     {% if approved_hours_boolean %}
