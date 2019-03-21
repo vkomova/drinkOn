@@ -14,11 +14,9 @@ Carly, Mike, and Valerie were sitting in class together and were thinking about 
 
 
 ## Screenshots
-![Home Page](https://i.imgur.com/1ZpvlwM.png)
+![Home Page](https://i.imgur.com/1ZpvlwM.png)  
 
-
-![Search Page](https://i.imgur.com/tSEqygk.png)
-
+![Search Page](https://i.imgur.com/tSEqygk.png)  
 
 ![Results Page](https://i.imgur.com/FdTfsdR.png)
 
