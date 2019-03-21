@@ -80,6 +80,7 @@ footer div {
     background-color: white;
 }
 
+
 /* .h3-wrapper {
     display: flex;
     flex-direction: row;
@@ -122,6 +123,11 @@ footer div {
 .amazon-img {
     image-orientation: from-image;
 }
+
+.modal-button {
+    margin-top: 20px !important;
+}
+
 
 @media only screen and (min-width: 600px) {
     .about-wrapper {
