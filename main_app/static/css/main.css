@@ -26,6 +26,10 @@ main {
     flex: 1 0 auto;
 }
 
+td {
+    font-size: 16px;
+}
+
 .about {
     border-radius: 25px;
     border: 2px solid white;
@@ -48,8 +52,17 @@ main {
 
 p {
     font-size: 20px;
+    font-weight: bold;
 }
 
+.row-padding {
+    padding-left: 0 !important;
+}
+
+.img-max-width {
+    max-width: 80%;
+    max-height: 450px;
+}
 /* footer {
     border-top: 2px solid white;
 } */
@@ -130,7 +143,10 @@ footer div {
 
 @media only screen and (max-width: 320px) {
     .brand-logo {
-        font-size: 28px !important;
+        font-size: 26px !important;
+    }
+    .logo-header-icon {
+        font-size: 26px !important;
     }
 }
  
