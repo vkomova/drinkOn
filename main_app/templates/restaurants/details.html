@@ -93,7 +93,7 @@
                     <div id="dispute-menu" class="modal">
                         <div class="modal-content">
                             <p>A user has submitted the following updated menu:</p><br>
-                            <img class="materialboxed img-max-width" src="{{pending_menu.menu_photo_url}}" alt="pending menu"><br>
+                                <img class="materialboxed img-max-width" src="{{pending_menu.menu_photo_url}}" alt="pending menu"><br>
                             <p>Is this correct?</p><br>
                             <a class="btn deep-purple darken-2" href="{% url 'menu_yay_vote' restaurant.id %}">Confirm Change</a>
                             <a class="btn red" href="{% url 'menu_nay_vote' restaurant.id %}">Dispute Change</a>
