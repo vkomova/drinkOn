@@ -108,6 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -136,5 +137,6 @@ import environ
 environ.Env()
 environ.Env.read_env()
 
+# Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
