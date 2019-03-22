@@ -38,5 +38,4 @@ Please visit https://drinkon-wdi.herokuapp.com to try out our app!
 
 
 ## Next Steps
-For next steps, we would like to add functionality to prompt users to confirm that informaiton is current if the last addition/update was made over a month ago. We would also like to add a geolocating feature that would take the user's current locaton and use those coordinates to load nearby happy hours. Another feature we would like to implement is viewing nearby restaurants by happy hour menu.
-
+For next steps, we would like to add functionality to prompt users to confirm that informaiton is current if the last addition/update was made over a month ago. We would also like to add a geolocating feature that would take the user's current locaton and use those coordinates to load nearby happy hours. Another feature we would like to implement is viewing nearby restaurants by happy hour time slot. Lastly, we would like to modify our model so that users can add happy hour menu/time by day.
