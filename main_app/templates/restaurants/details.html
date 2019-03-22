@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-content">
                     {% if  approved_hours_boolean %}
-                        <p>Happy Hour: {{current_approved_hours}}</p><br>
+                        <p>Happy Hour: <span class="deep-purple-text"> {{current_approved_hours}} </span></p><br>
                     {% else %}
                         <p>No happy hour data for this restaurant. Please add it below.</p>
                         <form action="{% url 'update_hours' restaurant.id %}" method="POST">
@@ -30,7 +30,7 @@
                             <div class="modal-content">
                                 <!-- votes here -->
                                 <p>A user has submitted the following edit to the Happy Hour:</p><br>
-                                <p>{{pending_hours}}</p><br>
+                                <p><span class="deep-purple-text"> {{pending_hours}} </span></p><br>
     
                                 {% if user_hours_vote %}
                                 <p>You have already voted to 
