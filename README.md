@@ -14,7 +14,7 @@ Carly, Mike, and Valerie were sitting in class together and were thinking about 
 
 
 ## Screenshots
-![Home Page](https://i.imgur.com/1ZpvlwM.png)  
+![Home Page](https://i.imgur.com/yYuwKNt.png)  
 
 ![Search Page](https://i.imgur.com/tSEqygk.png)  
 
@@ -38,4 +38,4 @@ Please visit https://drinkon-wdi.herokuapp.com to try out our app!
 
 
 ## Next Steps
-For next steps, we would like to add functionality to prompt users to confirm that informaiton is current if the last addition/update was made over a month ago. We would also like to add a geolocating feature that would take the user's current locaton and use those coordinates to load nearby happy hours. Another feature we would like to implement is viewing nearby restaurants by happy hour time slot. Lastly, we would like to modify our model so that users can add happy hour menu/time by day.
+For next steps, we would like to add functionality to prompt users to confirm that informaiton is current if the last addition/update was made over a month ago. We would also like to add a geolocating feature that would take the user's current locaton and use those coordinates to load nearby happy hours. Another feature we would like to implement is viewing nearby restaurants by happy hour time slot as well as removing restaurants from the list if they do not have a happy hour. Lastly, we would like to modify our model so that users can add happy hour menu/time by day.
