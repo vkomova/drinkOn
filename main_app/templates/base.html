@@ -39,6 +39,7 @@
                 </div>
             </div>
             <ul class="sidenav deep-purple lighten-1" id="mobile-menu">
+                <li><a href="{% url 'about' %}" class="white-text">About</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'inputnearby' %}" class="white-text">Eneter Location</a></li>
                 <li><a href="{% url 'nearby' %}" class="white-text">Nearby Restaurants</a></li>
